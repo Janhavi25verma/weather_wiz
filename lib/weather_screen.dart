@@ -106,15 +106,51 @@ class WeatherScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                
               ),
             ),
             const SizedBox(
-              height: 8,
+              height: 16,
             ),
-            const Placeholder(
-              fallbackHeight: 100,
-            ),
+           const Row(
+             children: [
+               Padding(
+                 padding: EdgeInsets.symmetric(horizontal: 45),
+                 child: Column(
+                   children: [
+                     Icon(Icons.water_drop,size: 30,),
+                     SizedBox(height: 10,),
+                     Text("Humidity",style: TextStyle(fontSize: 16),),
+                     SizedBox(height: 10,),
+                     Text("94",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
+                   ],
+                 ),
+               ),
+               Padding(
+                 padding: EdgeInsets.symmetric(horizontal: 45),
+                 child: Column(
+                   children: [
+                     Icon(Icons.air,size: 30,),
+                     SizedBox(height: 10,),
+                     Text("Wind Speed",style: TextStyle(fontSize: 16),),
+                     SizedBox(height: 10,),
+                     Text("97",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
+                   ],
+                 ),
+               ),
+               Padding(
+                 padding: EdgeInsets.symmetric(horizontal: 45),
+                 child: Column(
+                   children: [
+                     Icon(Icons.umbrella,size: 30,),
+                     SizedBox(height: 10,),
+                     Text("Pressure",style: TextStyle(fontSize: 16),),
+                     SizedBox(height: 10,),
+                     Text("94",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
+                   ],
+                 ),
+               )
+             ],
+           )
           ],
         ),
       ),
