@@ -1,6 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:weather_app/additional_information_item.dart';
+import 'package:weather_app/hourly_weather_card.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
@@ -111,90 +112,15 @@ class WeatherScreen extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-           const Row(
-             children: [
-               Padding(
-                 padding: EdgeInsets.symmetric(horizontal: 45),
-                 child: Column(
-                   children: [
-                     Icon(Icons.water_drop,size: 30,),
-                     SizedBox(height: 10,),
-                     Text("Humidity",style: TextStyle(fontSize: 16),),
-                     SizedBox(height: 10,),
-                     Text("94",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
-                   ],
-                 ),
-               ),
-               Padding(
-                 padding: EdgeInsets.symmetric(horizontal: 45),
-                 child: Column(
-                   children: [
-                     Icon(Icons.air,size: 30,),
-                     SizedBox(height: 10,),
-                     Text("Wind Speed",style: TextStyle(fontSize: 16),),
-                     SizedBox(height: 10,),
-                     Text("97",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
-                   ],
-                 ),
-               ),
-               Padding(
-                 padding: EdgeInsets.symmetric(horizontal: 45),
-                 child: Column(
-                   children: [
-                     Icon(Icons.umbrella,size: 30,),
-                     SizedBox(height: 10,),
-                     Text("Pressure",style: TextStyle(fontSize: 16),),
-                     SizedBox(height: 10,),
-                     Text("94",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
-                   ],
-                 ),
-               )
-             ],
-           )
+            const Row(
+              children: [
+                AdditionalInformationItem(),
+              ],
+            ),
           ],
-        ),
-      ),
-    );
+        ),),);
   }
 }
 
-class HourlyWeatherCard extends StatelessWidget {
-  const HourlyWeatherCard({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 100,
-      child: Card(
-        elevation: 6,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: const Padding(
-          padding: EdgeInsets.all(8.0),
-
-          child: Column(
-            children: [
-              Text(
-                "9:00",
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Icon(
-                Icons.cloud,
-                size: 20,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Rain",
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 
