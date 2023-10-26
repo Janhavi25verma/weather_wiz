@@ -88,13 +88,29 @@ class WeatherScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  HourlyWeatherCard(),
-                  HourlyWeatherCard(),
-                  HourlyWeatherCard(),
-                  HourlyWeatherCard(),
-                  HourlyWeatherCard(),
-                  HourlyWeatherCard(),
-
+                  HourlyWeatherCard(
+                    time: "8:00",
+                    weatherAtTime: "Rain",
+                    icon: Icons.cloudy_snowing,
+                  ),
+                  HourlyWeatherCard(time: "10:00",
+                    weatherAtTime: "Thunder",
+                    icon: Icons.thunderstorm,),
+                  HourlyWeatherCard(time: "12:00",
+                    weatherAtTime: "Cloudy",
+                    icon: Icons.cloud,),
+                  HourlyWeatherCard(time: "14:00",
+                    weatherAtTime: "Rain",
+                    icon: Icons.cloudy_snowing,),
+                  HourlyWeatherCard(time: "17:00",
+                      weatherAtTime: "Thunder",
+                      icon: Icons.thunderstorm,),
+                  HourlyWeatherCard(time: "19:00",
+                    weatherAtTime: "Cloudy",
+                    icon: Icons.cloud,),
+                  HourlyWeatherCard(time: "21:00",
+                    weatherAtTime: "Cloudy",
+                    icon: Icons.cloud,),
                 ],
               ),
             ),
@@ -113,14 +129,28 @@ class WeatherScreen extends StatelessWidget {
               height: 16,
             ),
             const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                AdditionalInformationItem(),
+                AdditionalInformationItem(
+                  icon: Icons.water_drop,
+                  label: "Humidity",
+                  value: 97,
+                ),
+                AdditionalInformationItem(
+                  icon: Icons.air,
+                  label: "Wind Speed",
+                  value: 30,
+                ),
+                AdditionalInformationItem(
+                  icon: Icons.beach_access,
+                  label: "Pressure",
+                  value: 97,
+                ),
               ],
             ),
           ],
-        ),),);
+        ),
+      ),
+    );
   }
 }
-
-
-
