@@ -20,7 +20,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     getCurrentWeather();
   }
 
-  Future getCurrentWeather() async {
+  Future<Map<String,dynamic>> getCurrentWeather() async {
     try {
       String cityName = 'London';
       final result = await http.get(
@@ -32,6 +32,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         throw ("Unexpected error occurred");
       }
       // print(data['list'][0]['main']['temp']);
+      return data;
     } catch (e) {
       throw e.toString();
     }
@@ -56,11 +57,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
         builder: (context,snapshot) {
           print(snapshot);
        if(snapshot.connectionState == ConnectionState.waiting){
-         return const CircularProgressIndicator();
+         return const Center(child: CircularProgressIndicator());
        }
        if(snapshot.hasError){
          return Text(snapshot.error.toString());
        }
+        final data= snapshot.data!;
+       final currentTemp= data['list'][0]['main']['temp'];
           return Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -80,26 +83,26 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         sigmaX: 20,
                         sigmaY: 20,
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(16),
+                      child:  Padding(
+                        padding: const EdgeInsets.all(16),
                         child: Column(
                           children: [
                             Text(
-                              "300°K",
-                              style: TextStyle(
+                              "$currentTemp°K",
+                              style: const TextStyle(
                                   fontSize: 30, fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.cloud,
                               size: 30,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
-                            Text(
+                            const Text(
                               "Rain",
                               style: TextStyle(fontSize: 20),
                             )
