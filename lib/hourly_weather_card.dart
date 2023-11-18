@@ -25,6 +25,8 @@ class HourlyWeatherCard extends StatelessWidget {
               Text(
                 time,
                 style: const TextStyle(fontSize: 16),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             const  SizedBox(
                 height: 10,
