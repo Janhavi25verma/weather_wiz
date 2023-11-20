@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/additional_information_item.dart';
 import 'package:weather_app/hidden.dart';
 import 'package:weather_app/hourly_weather_card.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl_browser.dart';
+// import 'package:intl/intl_browser.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -15,10 +16,11 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  late Future<Map<String,dynamic>> weather;
   @override
   void initState() {
     super.initState();
-    getCurrentWeather();
+    weather=getCurrentWeather();
   }
 
   Future<Map<String, dynamic>> getCurrentWeather() async {
@@ -50,11 +52,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
         centerTitle: true,
         actions: [
           // GestureDetector(child: const Icon(Icons.refresh)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.refresh))
+          IconButton(onPressed: () {
+            setState(() {
+              weather=getCurrentWeather();
+            });
+          }, icon: const Icon(Icons.refresh))
         ],
       ),
       body: FutureBuilder(
-        future: getCurrentWeather(),
+        future: weather,
         builder: (context, snapshot) {
           print(snapshot);
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -157,8 +163,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       itemBuilder: (context, index) {
                         final hourlyForecast = data['list'][index];
                         final hourlyIcon = data['list'][index]['weather'][0]['main'];
+                        final time=DateTime.parse(hourlyForecast['dt_txt']);
                         return HourlyWeatherCard(
-                            time: hourlyForecast['dt'].toString(),
+                            time: DateFormat.j().format(time),
                             icon: hourlyIcon == "Clouds" ? Icons.cloud : Icons
                                 .cloudy_snowing,
                             weatherAtTime: hourlyForecast['weather'][0]['main']
