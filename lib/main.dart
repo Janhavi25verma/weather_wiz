@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/bloc/location/location_bloc.dart';
 import 'package:weather_app/weather_screen.dart';
 
 void main() {
@@ -14,8 +16,9 @@ class MyApp  extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
     theme: ThemeData.dark(useMaterial3: true),
-    home: const WeatherScreen(
-    ),
+    home: BlocProvider(
+        create: (context) => LocationBloc(),
+        child: const WeatherScreen()),
     );
   }
 }
