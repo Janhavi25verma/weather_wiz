@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/screen/weather_screen.dart';
 import '../bloc/location/location_bloc.dart';
 import '../bloc/location/location_event.dart';
 import '../bloc/location/location_state.dart';
+import '../bloc/weather/weather_bloc.dart';
+import '../bloc/weather/weather_event.dart';
 
 
 class LocationScreen extends StatelessWidget {
@@ -29,9 +32,14 @@ class LocationScreen extends StatelessWidget {
                   Text('City: ${state.city}, Street: ${state.street}, Country: ${state.country}'),
                   ElevatedButton(
                     onPressed: () {
-                      // Trigger the weather API call with city and country
-                      // For example:
-                      // fetchWeather(state.city, state.country);
+                      context.read<WeatherBloc>().add(FetchWeather(city: state.city, country: state.country));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>  WeatherScreen(city: state.city,
+                            country: state.country,),
+                        ),
+                      );
                     },
                     child: const Text('Get Weather'),
                   ),
