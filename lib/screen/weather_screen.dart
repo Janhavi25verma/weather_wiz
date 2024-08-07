@@ -1,13 +1,9 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/components/additional_information_item.dart';
-import 'package:weather_app/components/hidden.dart';
 import 'package:weather_app/components/hourly_weather_card.dart';
-import 'package:http/http.dart' as http;
 import '../bloc/weather/weather_bloc.dart';
 import '../bloc/weather/weather_event.dart';
 import '../bloc/weather/weather_state.dart';
@@ -81,7 +77,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: Text(state.message),
           );
         } else if (state is WeatherLoaded) {
-          final data = state.weatherData!;
+          final data = state.weatherData;
           final currentWeatherData = data['list'][0];
           final currentTemp = currentWeatherData['main']['temp'];
           final currentSky = currentWeatherData['weather'][0]['main'];
