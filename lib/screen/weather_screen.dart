@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -108,7 +109,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           child: Column(
                             children: [
                               Text(
-
                                 "$currentTemp °K",
                                 style: const TextStyle(
                                     fontSize: 30, fontWeight: FontWeight.bold),
@@ -217,6 +217,33 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 16,
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: 'Planning to go out? ',
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    children: [
+                      TextSpan(
+                        text: 'click here',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            // Handle the click event
+                          },
+                      ),
+                      const TextSpan(
+                        text: ' for suggestions near you.',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           );
