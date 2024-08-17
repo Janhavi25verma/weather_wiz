@@ -31,24 +31,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
         .add(FetchWeather(city: widget.city, country: widget.country));
   }
 
-  // Future<Map<String, dynamic>> getCurrentWeather() async {
-  //   try {
-  //     String cityName = 'London';
-  //     final result = await http.get(
-  //       Uri.parse(
-  //           'http://api.openweathermap.org/data/2.5/forecast?q=$cityName,uk&APPID=$openWeatherApiKey'),
-  //     );
-  //     final data = jsonDecode(result.body);
-  //     if (data['cod'] != '200') {
-  //       throw ("Unexpected error occurred");
-  //     }
-  //     // print(data['list'][0]['main']['temp']);
-  //     return data;
-  //   } catch (e) {
-  //     throw e.toString();
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +91,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                "$currentTemp °K",
+                                "$currentTemp °C",
                                 style: const TextStyle(
                                     fontSize: 30, fontWeight: FontWeight.bold),
                               ),
