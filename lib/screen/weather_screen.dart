@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/components/additional_information_item.dart';
 import 'package:weather_app/components/hourly_weather_card.dart';
+import 'package:weather_app/screen/nearby_places_screen.dart';
 import '../bloc/weather/weather_bloc.dart';
 import '../bloc/weather/weather_event.dart';
 import '../bloc/weather/weather_state.dart';
@@ -13,8 +14,10 @@ import '../bloc/weather/weather_state.dart';
 class WeatherScreen extends StatefulWidget {
   final String city;
   final String country;
+  final double lat;
+  final double lon;
 
-  const WeatherScreen({super.key, required this.city, required this.country});
+  const WeatherScreen({super.key, required this.city, required this.country, required this.lat, required this.lon});
 
   @override
   State<WeatherScreen> createState() => _WeatherScreenState();
@@ -216,7 +219,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            // Handle the click event
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => PlaceScreen(
+                                  lat: widget.lat,        // Pass the latitude
+                                  lon: widget.lon,       // Pass the longitude
+                                  weatherCondition: currentSky, // Pass the weather condition
+                                ),
+                              ),
+                            );
                           },
                       ),
                       const TextSpan(

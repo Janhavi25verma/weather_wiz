@@ -37,7 +37,9 @@ class LocationScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>  WeatherScreen(city: state.city,
-                            country: state.country,),
+                            country: state.country,
+                          lat: state.latitude,
+                          lon: state.longitude),
                         ),
                       );
                     },
