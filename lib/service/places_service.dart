@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../components/hidden.dart';
@@ -15,7 +14,7 @@ class PlacesService {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
 
-        print("API RESPONSE: $data");
+        // print("API RESPONSE: $data");
 
       return data['results'] as List<dynamic>;
     } else {
