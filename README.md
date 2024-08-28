@@ -1,6 +1,6 @@
-# weather_app
+# weatherWiz
 
-A new Flutter project.
+ WeatherWiz is an app that provides location-based suggestions tailored to current weather conditions. It uses Geolocator to determine the user's location, converts the coordinates into a readable address, and leverages the **OpenWeatherMap API** for real-time weather data. Based on the weather, the **Google Places API** suggests nearby locations—indoor spots like museums or cafes during rain and outdoor areas like parks or gardens when the weather is clear.
 
 ## Getting Started
 
